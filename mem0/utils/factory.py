@@ -49,6 +49,8 @@ class EmbedderFactory:
         "vertexai": "mem0.embeddings.vertexai.VertexAIEmbedding",
         "together": "mem0.embeddings.together.TogetherEmbedding",
         "lmstudio": "mem0.embeddings.lmstudio.LMStudioEmbedding",
+        "ark": "mem0.embeddings.ark.ArkEmbedding",
+        "siliconflow": "mem0.embeddings.siliconflow.SiliconFlowEmbedding",
     }
 
     @classmethod

@@ -22,6 +22,8 @@ class EmbedderConfig(BaseModel):
             "vertexai",
             "together",
             "lmstudio",
+            "ark",
+            "siliconflow",
         ]:
             return v
         else:
