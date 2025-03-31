@@ -14,7 +14,7 @@ class ArkEmbedding(EmbeddingBase):
         self.config.model = self.config.model or "doubao-embedding-text-240715"
         api_key = self.config.api_key or os.getenv("VOLCENGINE_API_KEY")
         # TODO: check if this is correct
-        self.config.embedding_dims = self.config.embedding_dims or 768
+        self.config.embedding_dims = self.config.embedding_dims or 2560
         self.client = Ark(api_key=api_key)
 
     def embed(self, text, memory_action: Optional[Literal["add", "search", "update"]] = None):
