@@ -34,13 +34,13 @@ from mem0.utils.factory import EmbedderFactory, LlmFactory, VectorStoreFactory
 
 
 def _build_filters_and_metadata(
-    *,  # Enforce keyword-only arguments
-    user_id: Optional[str] = None,
-    agent_id: Optional[str] = None,
-    run_id: Optional[str] = None,
-    actor_id: Optional[str] = None,  # For query-time filtering
-    input_metadata: Optional[Dict[str, Any]] = None,
-    input_filters: Optional[Dict[str, Any]] = None,
+        *,  # Enforce keyword-only arguments
+        user_id: Optional[str] = None,
+        agent_id: Optional[str] = None,
+        run_id: Optional[str] = None,
+        actor_id: Optional[str] = None,  # For query-time filtering
+        input_metadata: Optional[Dict[str, Any]] = None,
+        input_filters: Optional[Dict[str, Any]] = None,
 ) -> tuple[Dict[str, Any], Dict[str, Any]]:
     """
     Constructs metadata for storage and filters for querying based on session and actor identifiers.
@@ -176,16 +176,16 @@ class Memory(MemoryBase):
             raise
 
     def add(
-        self,
-        messages,
-        *,
-        user_id: Optional[str] = None,
-        agent_id: Optional[str] = None,
-        run_id: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None,
-        infer: bool = True,
-        memory_type: Optional[str] = None,
-        prompt: Optional[str] = None,
+            self,
+            messages,
+            *,
+            user_id: Optional[str] = None,
+            agent_id: Optional[str] = None,
+            run_id: Optional[str] = None,
+            metadata: Optional[Dict[str, Any]] = None,
+            infer: bool = True,
+            memory_type: Optional[str] = None,
+            prompt: Optional[str] = None,
     ):
         """
         Create a new memory.
@@ -279,9 +279,9 @@ class Memory(MemoryBase):
             returned_memories = []
             for message_dict in messages:
                 if (
-                    not isinstance(message_dict, dict)
-                    or message_dict.get("role") is None
-                    or message_dict.get("content") is None
+                        not isinstance(message_dict, dict)
+                        or message_dict.get("role") is None
+                        or message_dict.get("content") is None
                 ):
                     logger.warning(f"Skipping invalid message format: {message_dict}")
                     continue
@@ -495,13 +495,13 @@ class Memory(MemoryBase):
         return result_item
 
     def get_all(
-        self,
-        *,
-        user_id: Optional[str] = None,
-        agent_id: Optional[str] = None,
-        run_id: Optional[str] = None,
-        filters: Optional[Dict[str, Any]] = None,
-        limit: int = 100,
+            self,
+            *,
+            user_id: Optional[str] = None,
+            agent_id: Optional[str] = None,
+            run_id: Optional[str] = None,
+            filters: Optional[Dict[str, Any]] = None,
+            limit: int = 100,
     ):
         """
         List all memories.
@@ -564,7 +564,9 @@ class Memory(MemoryBase):
     def _get_all_from_vector_store(self, filters, limit):
         memories_result = self.vector_store.list(filters=filters, limit=limit)
         actual_memories = (
-            memories_result[0] if isinstance(memories_result, tuple) and len(memories_result) > 0 else memories_result
+            memories_result[0] if (
+                isinstance(memories_result, tuple) or isinstance(memories_result, list)
+            ) and len(memories_result) > 0 else memories_result
         )
 
         promoted_payload_keys = [
@@ -599,14 +601,14 @@ class Memory(MemoryBase):
         return formatted_memories
 
     def search(
-        self,
-        query: str,
-        *,
-        user_id: Optional[str] = None,
-        agent_id: Optional[str] = None,
-        run_id: Optional[str] = None,
-        limit: int = 100,
-        filters: Optional[Dict[str, Any]] = None,
+            self,
+            query: str,
+            *,
+            user_id: Optional[str] = None,
+            agent_id: Optional[str] = None,
+            run_id: Optional[str] = None,
+            limit: int = 100,
+            filters: Optional[Dict[str, Any]] = None,
     ):
         """
         Searches for memories based on a query
@@ -999,17 +1001,17 @@ class AsyncMemory(MemoryBase):
             raise
 
     async def add(
-        self,
-        messages,
-        *,
-        user_id: Optional[str] = None,
-        agent_id: Optional[str] = None,
-        run_id: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None,
-        infer: bool = True,
-        memory_type: Optional[str] = None,
-        prompt: Optional[str] = None,
-        llm=None,
+            self,
+            messages,
+            *,
+            user_id: Optional[str] = None,
+            agent_id: Optional[str] = None,
+            run_id: Optional[str] = None,
+            metadata: Optional[Dict[str, Any]] = None,
+            infer: bool = True,
+            memory_type: Optional[str] = None,
+            prompt: Optional[str] = None,
+            llm=None,
     ):
         """
         Create a new memory asynchronously.
@@ -1083,19 +1085,19 @@ class AsyncMemory(MemoryBase):
         return {"results": vector_store_result}
 
     async def _add_to_vector_store(
-        self,
-        messages: list,
-        metadata: dict,
-        filters: dict,
-        infer: bool,
+            self,
+            messages: list,
+            metadata: dict,
+            filters: dict,
+            infer: bool,
     ):
         if not infer:
             returned_memories = []
             for message_dict in messages:
                 if (
-                    not isinstance(message_dict, dict)
-                    or message_dict.get("role") is None
-                    or message_dict.get("content") is None
+                        not isinstance(message_dict, dict)
+                        or message_dict.get("role") is None
+                        or message_dict.get("content") is None
                 ):
                     logger.warning(f"Skipping invalid message format (async): {message_dict}")
                     continue
@@ -1206,7 +1208,6 @@ class AsyncMemory(MemoryBase):
 
             logging.error(f"Invalid JSON response: {e}")
             new_memories_with_actions = {}
-
 
         returned_memories = []
         try:
@@ -1327,13 +1328,13 @@ class AsyncMemory(MemoryBase):
         return result_item
 
     async def get_all(
-        self,
-        *,
-        user_id: Optional[str] = None,
-        agent_id: Optional[str] = None,
-        run_id: Optional[str] = None,
-        filters: Optional[Dict[str, Any]] = None,
-        limit: int = 100,
+            self,
+            *,
+            user_id: Optional[str] = None,
+            agent_id: Optional[str] = None,
+            run_id: Optional[str] = None,
+            filters: Optional[Dict[str, Any]] = None,
+            limit: int = 100,
     ):
         """
         List all memories.
@@ -1434,14 +1435,14 @@ class AsyncMemory(MemoryBase):
         return formatted_memories
 
     async def search(
-        self,
-        query: str,
-        *,
-        user_id: Optional[str] = None,
-        agent_id: Optional[str] = None,
-        run_id: Optional[str] = None,
-        limit: int = 100,
-        filters: Optional[Dict[str, Any]] = None,
+            self,
+            query: str,
+            *,
+            user_id: Optional[str] = None,
+            agent_id: Optional[str] = None,
+            run_id: Optional[str] = None,
+            limit: int = 100,
+            filters: Optional[Dict[str, Any]] = None,
     ):
         """
         Searches for memories based on a query
