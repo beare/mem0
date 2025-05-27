@@ -51,6 +51,7 @@ class PGVector(VectorStoreBase):
         self.collection_name = collection_name
         self.use_diskann = diskann
         self.use_hnsw = hnsw
+        self.embedding_model_dims = embedding_model_dims
 
         self.conn = psycopg2.connect(dbname=dbname, user=user, password=password, host=host, port=port)
         self.cur = self.conn.cursor()
@@ -67,6 +68,7 @@ class PGVector(VectorStoreBase):
         Args:
             embedding_model_dims (int): Dimension of the embedding vector.
         """
+        self.cur.execute("CREATE EXTENSION IF NOT EXISTS vector")
         self.cur.execute(
             f"""
             CREATE TABLE IF NOT EXISTS {self.collection_name} (
@@ -284,3 +286,9 @@ class PGVector(VectorStoreBase):
             self.cur.close()
         if hasattr(self, "conn"):
             self.conn.close()
+
+    def reset(self):
+        """Reset the index by deleting and recreating it."""
+        logger.warning(f"Resetting index {self.collection_name}...")
+        self.delete_col()
+        self.create_col(self.embedding_model_dims)

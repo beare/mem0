@@ -45,19 +45,22 @@
                     "group": "Features",
                     "icon": "star",
                     "pages": [
-                      "features/platform-overview",
-                      "features/advanced-retrieval",
-                      "features/contextual-add",
-                      "features/multimodal-support",
-                      "features/selective-memory",
-                      "features/custom-categories",
-                      "features/custom-instructions",
-                      "features/direct-import",
-                      "features/async-client",
-                      "features/memory-export",
-                      "features/webhooks",
-                      "features/graph-memory",
-                      "features/feedback-mechanism"
+                      "platform/features/platform-overview",
+                      "platform/features/advanced-retrieval",
+                      "platform/features/criteria-retrieval",
+                      "platform/features/contextual-add",
+                      "platform/features/multimodal-support",
+                      "platform/features/timestamp",
+                      "platform/features/selective-memory",
+                      "platform/features/custom-categories",
+                      "platform/features/custom-instructions",
+                      "platform/features/direct-import",
+                      "platform/features/async-client",
+                      "platform/features/memory-export",
+                      "platform/features/webhooks",
+                      "platform/features/graph-memory",
+                      "platform/features/feedback-mechanism",
+                      "platform/features/expiration-date"
                     ]
                   }
                 ]
@@ -73,10 +76,11 @@
                     "group": "Features",
                     "icon": "wrench",
                     "pages": [
-                      "features/openai_compatibility",
-                      "features/custom-fact-extraction-prompt",
-                      "features/custom-update-memory-prompt",
-                      "open-source/multimodal-support",
+                      "open-source/features/async-memory",
+                      "open-source/features/openai_compatibility",
+                      "open-source/features/custom-fact-extraction-prompt",
+                      "open-source/features/custom-update-memory-prompt",
+                      "open-source/features/multimodal-support",
                       "open-source/features/rest-api"
                     ]
                   },
@@ -110,7 +114,10 @@
                           "components/llms/models/aws_bedrock",
                           "components/llms/models/gemini",
                           "components/llms/models/deepseek",
-                          "components/llms/models/xAI"
+                          "components/llms/models/xAI",
+                          "components/llms/models/sarvam",
+                          "components/llms/models/lmstudio",
+                          "components/llms/models/langchain"
                         ]
                       }
                     ]
@@ -130,14 +137,15 @@
                           "components/vectordbs/dbs/pgvector",
                           "components/vectordbs/dbs/milvus",
                           "components/vectordbs/dbs/pinecone",
-                          "components/vectordbs/dbs/azure_ai_search",
+                          "components/vectordbs/dbs/azure",
                           "components/vectordbs/dbs/redis",
                           "components/vectordbs/dbs/elasticsearch",
                           "components/vectordbs/dbs/opensearch",
                           "components/vectordbs/dbs/supabase",
-                          "components/vectordbs/dbs/vertex_ai_vector_search",
+                          "components/vectordbs/dbs/vertex_ai",
                           "components/vectordbs/dbs/weaviate",
-                          "components/vectordbs/dbs/faiss"
+                          "components/vectordbs/dbs/faiss",
+                          "components/vectordbs/dbs/langchain"
                         ]
                       }
                     ]
@@ -157,7 +165,11 @@
                           "components/embedders/models/ollama",
                           "components/embedders/models/huggingface",
                           "components/embedders/models/vertexai",
-                          "components/embedders/models/gemini"
+                          "components/embedders/models/gemini",
+                          "components/embedders/models/lmstudio",
+                          "components/embedders/models/together",
+                          "components/embedders/models/langchain",
+                          "components/embedders/models/aws_bedrock"
                         ]
                       }
                     ]
@@ -175,15 +187,27 @@
             ]
           },
           {
+            "tab": "OpenMemory",
+            "icon": "square-terminal",
+            "pages": [
+              "openmemory/overview",
+              "openmemory/quickstart"
+            ]
+          },
+          {
             "tab": "Examples",
             "groups": [
               {
                 "group": "💡 Examples",
                 "icon": "lightbulb",
                 "pages": [
-                  "examples/overview",
+                  "examples",
+                  "examples/aws_example",
                   "examples/mem0-demo",
                   "examples/ai_companion_js",
+                  "examples/collaborative-task-agent",
+                  "examples/eliza_os",
+                  "examples/mem0-mastra",
                   "examples/mem0-with-ollama",
                   "examples/personal-ai-tutor",
                   "examples/customer-support-agent",
@@ -196,8 +220,9 @@
                   "examples/mem0-agentic-tool",
                   "examples/openai-inbuilt-tools",
                   "examples/mem0-openai-voice-demo",
-                  "examples/mem0-livekit-voice-agent",
-                  "examples/email_processing"
+                  "examples/mem0-google-adk-healthcare-assistant",
+                  "examples/email_processing",
+                  "examples/youtube-assistant"
                 ]
               }
             ]
@@ -209,8 +234,9 @@
                 "group": "Integrations",
                 "icon": "plug",
                 "pages": [
-                  "integrations/overview",
+                  "integrations",
                   "integrations/vercel-ai-sdk",
+                  "integrations/flowise",
                   "integrations/crewai",
                   "integrations/autogen",
                   "integrations/langchain",
@@ -220,7 +246,12 @@
                   "integrations/dify",
                   "integrations/mcp-server",
                   "integrations/livekit",
-                  "integrations/elevenlabs"
+                  "integrations/elevenlabs",
+                  "integrations/pipecat",
+                  "integrations/agno",
+                  "integrations/keywords",
+                  "integrations/raycast",
+                  "integrations/mastra"
                 ]
               }
             ]
@@ -233,7 +264,7 @@
                 "group": "API Reference",
                 "icon": "terminal",
                 "pages": [
-                  "api-reference/overview",
+                  "api-reference",
                   {
                     "group": "Memory APIs",
                     "icon": "microchip",
@@ -309,7 +340,7 @@
                 "group": "Product Updates",
                 "icon": "rocket",
                 "pages": [
-                  "changelog/overview"
+                  "changelog"
                 ]
               }
             ]

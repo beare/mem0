@@ -22,6 +22,8 @@ class EmbedderConfig(BaseModel):
             "vertexai",
             "together",
             "lmstudio",
+            "langchain",
+            "aws_bedrock",
             "ark",
             "siliconflow",
         ]:
